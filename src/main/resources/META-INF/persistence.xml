@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="ENTERPRISE" transaction-type="RESOURCE_LOCAL">
+        <provider>
+            org.hibernate.jpa.HibernatePersistenceProvider
+        </provider>
+        <class>ru.kravchenko.se.entity.User</class>
+        <class>ru.kravchenko.se.entity.Project</class>
+        <!--<class>ru.volnenko.tm.model.Task</class>-->
+        <!--<class>ru.volnenko.tm.model.Session</class>-->
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test_db"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!--<property name="connection.provider_class" value="org.hibernate.collection.C3P0ConnectionProvide" />-->
+            <!--<property name="hibernate.c3p0.acquire_increment" value="1" />-->
+           <!--<property name="hibernate.c3p0.idle_test_period" value="60" />-->
+            <!--<property name="hibernate.c3p0.min_size" value="1" />-->
+            <!--<property name="hibernate.c3p0.max_size" value="2" />-->
+            <!--<property name="hibernate.c3p0.max_statements" value="50" />-->
+            <!--<property name="hibernate.c3p0.timeout" value="0" /> &lt;!&ndash; seconds &ndash;&gt;-->
+            <!--<property name="hibernate.c3p0.acquireRetryAttempts" value="1"/>-->
+            <!--<property name="hibernate.c3p0.acquireRetryDelay" value="250" />-->
+
+            <!--<property name="cache.provider_class" value="org.hibernate.cache.NoCacheProvide" />-->
+            <!--<property name="connection.release_mode" value="auto" />-->
+            <!---->
+            <!--<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />-->
+            <!--<property name="hibernate.current_session_context_class" value="thread" />-->
+
+        </properties>
+    </persistence-unit>
+</persistence>
+
+
+
+
