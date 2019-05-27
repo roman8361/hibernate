@@ -118,7 +118,6 @@ public class AppTest
             session.getTransaction().commit();
         } finally {
             session.close();
-            session.close();
         }
     }
 
@@ -131,7 +130,6 @@ public class AppTest
             List<User> allUser = session.createQuery("from User").getResultList();
             session.getTransaction().commit();
         } finally {
-            session.close();
             session.close();
         }
 

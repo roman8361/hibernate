@@ -37,9 +37,23 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.4.0.Final</version>
+      <version>5.3.9.Final</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <version>5.3.9.Final</version>
+      <scope>compile</scope>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.hibernate</groupId>-->
+      <!--<artifactId>hibernate-entitymanager</artifactId>-->
+      <!--<version>RELEASE</version>-->
+      <!--<scope>compile</scope>-->
+    <!--</dependency>-->
+
+
     <dependency>
       <groupId>com.thedeanda</groupId>
       <artifactId>lorem</artifactId>

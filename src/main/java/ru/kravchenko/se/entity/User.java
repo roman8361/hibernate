@@ -5,11 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Roman Kravchenko
@@ -19,12 +16,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user")
-public class User{
-
-    @Id
-    @Column(name = "id")
-    private String id = UUID.randomUUID().toString();
+@Table(name = "app_User")
+public class User extends AbstractEntity{
 
     @Nullable
     @Column(name = "login")
@@ -36,16 +29,17 @@ public class User{
 
     @Nullable
     @Column(name = "role")
+    @Enumerated(value = EnumType.STRING)
     private Status role = Status.USER;
 
-    @Nullable
-    @Column(name = "locked")
-    boolean locked;
+//    @Nullable
+//    @OneToMany
+//    private Project projects;
 
-//    @Override
-//    public String toString() {
-//        return "login: " + login + " password: " + passwordHash + " userStatus: " + role +
-//                " id: " + getId();
-//    }
+    @Override
+    public String toString() {
+        return "login: " + login + " password: " + passwordHash + " userStatus: " + role +
+                " id: " + getId();
+    }
 
 }
