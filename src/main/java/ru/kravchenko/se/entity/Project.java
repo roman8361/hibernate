@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Roman Kravchenko
@@ -37,16 +38,16 @@ public class Project extends AbstractEntity {
     @Column(name = "dateEnd")
     private Date dateEnd;
 
-    @Nullable
-    @Column(name = "userId")
-    private String userId;
-
     @NotNull
     @Column(name = "status")
     private StatusProjectTask status = StatusProjectTask.PLANNED;
 
     @ManyToOne
     private User user;
+
+    @Nullable
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     @Override
     public String toString() {
@@ -57,7 +58,7 @@ public class Project extends AbstractEntity {
 
         return "PROJECT NAME: \"" + this.name + "\" DESCRIPTION PROJECT: \"" + this.description + "\" "
                 + "PROJECT ID: \"" + super.getId() + "\" DATE BEGIN: \"" + dateBering + "\" DATE END: \""
-                + dateEnd + "\"" + " STATUS: " + this.status + " USER ID: " + this.userId;
+                + dateEnd + "\"" + " STATUS: " + this.status;
     }
 
 }

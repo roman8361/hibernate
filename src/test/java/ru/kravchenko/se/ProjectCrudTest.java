@@ -4,7 +4,6 @@ import com.thedeanda.lorem.Lorem;
 import com.thedeanda.lorem.LoremIpsum;
 import org.junit.Test;
 import ru.kravchenko.se.entity.Project;
-import ru.kravchenko.se.entity.Task;
 import ru.kravchenko.se.entity.User;
 
 import javax.persistence.EntityManager;
@@ -28,25 +27,34 @@ public class ProjectCrudTest {
 
     @Test
     public void addAnyProject() {
-        for (int i = 0; i < 10; i++) addOneProject();
-
+        for (int i = 0; i < 1; i++) addOneProject();
     }
 
     public void addOneProject() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         Project project = new Project();
+
         project.setName(lorem.getWords(1));
         project.setDateBegin(new Date());
         project.setDateEnd(new Date());
         project.setDescription(lorem.getWords(3));
+        project.setUser(findUserById());
         em.persist(project);
         em.getTransaction().commit();
         em.close();
     }
 
+    public User findUserById() {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        User user = em.find(User.class, "2573df72-06e9-433f-918d-bf024bfe7510");
+        em.close();
+        return user;
+    }
+
     @Test
-    public void findById() {
+    public void findProjectById() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         Project project = em.find(Project.class, "7ee5d4c5-761e-4aca-b8e5-175e4bb5d12c");
@@ -86,20 +94,19 @@ public class ProjectCrudTest {
     public void findAllProjectByUserId() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        String userId = "1";
-        List<Project> projects = em.createQuery("SELECT e FROM Project e WHERE e.userId =:userId", Project.class)
+        String userId = "8139e0fd-8af2-4b1e-b77f-83bb2b4e4194";
+        List<Project> projects = em.createQuery("SELECT e FROM Project e WHERE e.user.id =:userId", Project.class)
                 .setParameter("userId", userId)
                 .getResultList();
-        for (Project p: projects) System.out.println(p.getName());
-
+        for (Project p: projects) System.out.println(p.getDescription());
     }
 
     @Test
     public void removeAllProjectByUserId() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        String userId = "1";
-        List<Project> projects = em.createQuery("SELECT e FROM Project e WHERE e.userId =:userId", Project.class)
+        String userId = "8139e0fd-8af2-4b1e-b77f-83bb2b4e4194";
+        List<Project> projects = em.createQuery("SELECT e FROM Project e WHERE e.user.id =:userId", Project.class)
                 .setParameter("userId", userId)
                 .getResultList();
         for (Project p: projects) em.remove(p);

@@ -132,8 +132,6 @@ public class AppTest
         } finally {
             session.close();
         }
-
     }
-
 
 }

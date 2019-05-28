@@ -32,9 +32,16 @@ public class User extends AbstractEntity{
     @Enumerated(value = EnumType.STRING)
     private Status role = Status.USER;
 
-//    @Nullable
-//    @OneToMany
-//    private Project projects;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Session>  session;
+
+    @Nullable
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Project> projects;
+
+    @Nullable
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     @Override
     public String toString() {

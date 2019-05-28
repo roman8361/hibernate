@@ -25,9 +25,7 @@ public class UserCrudTest {
 
     @Test
     public void addAnyUser() {
-        for (int i = 0; i < 1; i++) {
-            addOneUser();
-        }
+        for (int i = 0; i < 10; i++)  addOneUser();
     }
 
     public void addOneUser() {
@@ -45,7 +43,7 @@ public class UserCrudTest {
     public void findById() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        User user = em.find(User.class, "80ec1622-cac3-45a9-994a-b62b81fc9ce6");
+        User user = em.find(User.class, "54934c47-96a2-4d5c-bfc4-e9def06ef256");
         em.close();
         System.out.println(user.getLogin());
     }
@@ -63,7 +61,7 @@ public class UserCrudTest {
     public void removeById() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        User user = em.find(User.class, "401c0284-f178-41c7-b614-52ff187e2507");
+        User user = em.find(User.class, "5f89dc38-cda6-46ab-af1c-01ed1c5d6bdf");
         em.remove(user);
         em.getTransaction().commit();
         em.close();
@@ -91,7 +89,7 @@ public class UserCrudTest {
     public void findAllLogin() {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        List<String> login = em.createQuery("SELECT login FROM User e WHERE login = #{id}", String.class).getResultList();
+        List<String> login = em.createQuery("SELECT login FROM User e", String.class).getResultList();
         em.close();
         for (String s: login) System.out.println(s);
     }

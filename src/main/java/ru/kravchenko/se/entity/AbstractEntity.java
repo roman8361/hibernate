@@ -16,8 +16,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @MappedSuperclass
+@NoArgsConstructor
 public abstract class AbstractEntity implements Serializable {
 
     @Id
